@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      color: #333
+    }
+
+    .comment-count {
+      color: #666;
+      font-size: 14px;
+      margin: 10px 0;
+    }
+
+    textarea {
+      width: 100%;
+      height: 80px;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 2px solid #004cff;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+
+    button {
+      padding: 8px 20px;
+      background: #3e9941;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 15px;
+    }
+
+    button:hover {
+      background: #317034;
+    }
+
+    .comment {
+      background: #fcfcfc;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+    }
+
+    .comment-info {
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+    }
+
+    .comment-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin-right: 10px;
+      object-fit: cover;
+    }
+
+    .comment-user {
+      font-weight: bold;
+      color: #333;
+    }
+
+    .comment-time {
+      color: #888;
+      font-size: 12px;
+      margin-left: 10px;
+    }
+
+    .comment-text {
+      color: #444;
+      margin-left: 40px;
+    }
+
+    .no-comments {
+      color: #999;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>评论区</h1>
+
+  <div class="comment-count" id="commentCount">共有 0 条评论</div>
+
+  <textarea id="commentBox" placeholder="请输入评论..."></textarea><br>
+  <button onclick="sendComment()">发表评论</button>
+
+  <div id="commentsArea">
+    <div class="no-comments" id="noComments">还没有评论，快来第一个发言吧！</div>
+  </div>
+
+  <script>
+    // 统计评论数量
+    var commentTotal = 0;
+
+    // 头像图片
+    var avatarImage = "avatar.jpg";
+
+    function updateCommentCount() {
+      document.getElementById('commentCount').textContent = '共有 ' + commentTotal + ' 条评论';
+    }
+
+    // 获取当前时间
+    function getTime() {
+      var now = new Date();
+      var hour = now.getHours();
+      var minute = now.getMinutes();
+      return hour + ':' + (minute < 10 ? '0' : '') + minute;
+    }
+
+    function sendComment() {
+      var box = document.getElementById('commentBox');
+      var area = document.getElementById('commentsArea');
+      var noCommentMsg = document.getElementById('noComments');
+
+      var content = box.value.trim();
+      if (!content) {
+        alert('请输入内容');
+        return;
+      }
+
+      // 隐藏"没有评论"提示
+      if (noCommentMsg) {
+        noCommentMsg.style.display = 'none';
+      }
+
+      // 获取当前时间
+      var currentTime = getTime();
+
+      // 创建新评论
+      var commentDiv = document.createElement('div');
+      commentDiv.className = 'comment';
+
+      // 设置评论内容（带头像和时间）
+      commentDiv.innerHTML =
+        '<div class="comment-info">' +
+        '  <img class="comment-avatar" src="' + avatarImage + '" alt="用户头像">' +
+        '  <span class="comment-user">用户</span>' +
+        '  <span class="comment-time">' + currentTime + '</span>' +
+        '</div>' +
+        '<div class="comment-text">' + content + '</div>';
+
+      // 添加到最前面
+      area.insertBefore(commentDiv, area.firstChild);
+
+      // 更新评论数量
+      commentTotal++;
+      updateCommentCount();
+
+      // 清空输入框
+      box.value = '';
+      box.focus();
+
+      // 删除
+      commentDiv.oncontextmenu = function (e) {
+        e.preventDefault();
+        if (confirm('确定要删除这条评论吗？')) {
+          area.removeChild(commentDiv);
+
+          // 更新评论数量
+          commentTotal--;
+          updateCommentCount();
+
+          // 如果没评论了，显示提示
+          if (area.children.length === 1) {
+            noCommentMsg.style.display = 'block';
+          }
+        }
+      };
+    }
+    // 初始化
+    updateCommentCount();
+  </script>
+</body>
+
+</html>
