@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>方法3: Promise</title>
+  <style>
+    body {
+      padding: 20px;
+      font-family: Arial;
+    }
+
+    .text-box {
+      border: 1px solid #ccc;
+      padding: 15px;
+      min-height: 100px;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h3>方法3: Promise + async/await</h3>
+  <div id="text3" class="text-box"></div>
+
+  <script>
+    const text = "我就这样躺着，任指间长出灌木，发间长出阿尔卑斯玫瑰,\n我的双膝是山丘，身上是葡萄园、房屋和小教堂。\n我就这样躺了一万年，向天空眨眼，向湖水眨眼。\n当我打喷嚏，便掀起一场风暴；\n当我在上面吹口气，雪便化了，瀑布跳起了舞。\n如果我死了，世界也就死了；\n那么我便穿越世界的海洋，去摘一个新的太阳。";
+
+    function wait(ms) {
+      return new Promise(resolve => {
+        setTimeout(resolve, ms);
+      });
+    }
+
+    // 用async函数
+    async function typewriter() {
+      for (let i = 0; i < text.length; i++) {
+        // 等待100ms
+        await wait(100);
+        document.getElementById('text3').innerHTML =
+          text.substring(0, i + 1);
+      }
+    }
+
+    // 开始
+    typewriter();
+  </script>
+</body>
+
+</html>

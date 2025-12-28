@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>方法2: setInterval</title>
+  <style>
+    body {
+      padding: 20px;
+      font-family: Arial;
+    }
+
+    .text-box {
+      border: 1px solid #ccc;
+      padding: 15px;
+      min-height: 100px;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h3>方法2: setInterval定时器</h3>
+  <div id="text2" class="text-box"></div>
+
+  <script>
+    const text = "我就这样躺着，任指间长出灌木，发间长出阿尔卑斯玫瑰,\n我的双膝是山丘，身上是葡萄园、房屋和小教堂。\n我就这样躺了一万年，向天空眨眼，向湖水眨眼。\n当我打喷嚏，便掀起一场风暴；\n当我在上面吹口气，雪便化了，瀑布跳起了舞。\n如果我死了，世界也就死了；\n那么我便穿越世界的海洋，去摘一个新的太阳。";
+    let index = 0;
+    let timer;
+
+    // 每隔100ms执行一次
+    timer = setInterval(() => {
+      if (index < text.length) {
+        document.getElementById('text2').innerHTML =
+          text.substring(0, index + 1);
+        index++;
+      } else {
+        clearInterval(timer);
+      }
+    }, 100);
+  </script>
+</body>
+
+</html>
