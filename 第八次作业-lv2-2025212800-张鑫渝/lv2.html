@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!--使用 https: //api.github.com/user/repos发送post请求
+  为自己的github仓库创建一个新的仓库MyProject，
+  需要header和body参数，body参数为json格式 -->
+  <script>
+    const token = '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'
+
+    fetch('https://api.github.com/user/repos', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'token ' + token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: 'MyProject',
+        private: false,
+        description: '测试仓库'
+      })
+    })
+      .then(res => res.json())
+      .then(data => console.log('成功！仓库地址:', data.html_url))
+      .catch(err => console.error('失败:', err));
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 使用https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric&lang=zh_cn
+  获取并且打印出重庆的温度和天气，
+    这个{cityName}是城市的名称，比如北京‘Beijing’，
+    {apiKey}是你进入https://openweathermap.org/注册过后生成的默认apiKey -->
+  <script>
+    const cityName = 'Chongqing';
+    const weatherConfig = {
+      method: "get"
+    }
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=Chongqing&appid=b9548326e1438860bc55e6870dd0ad26&units=metric&lang=zh_cn`, weatherConfig)
+      .then(response => response.json())
+      .then(data => {
+        console.log('当前' + cityName + '的温度是' + data.main.temp + '°C，天气情况是' + data.weather[0].description)
+      })
+  </script>
+</body>
+
+</html>
