@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>网易云音乐 - 发现</title>
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/discover.css">
+</head>
+
+<body>
+  <!-- 顶部导航栏 -->
+  <header class="header">
+    <!-- 左边搜索区域 -->
+    <div class="search-wrapper">
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="搜索音乐、歌手、歌词" id="searchInput" autocomplete="off">
+      </div>
+    </div>
+    <!-- 右边用户信息 -->
+    <div class="user-info">
+      <img src="./assets/user-avatar.jpg" alt="头像" class="avatar">
+      <span class="username">原味儿winking</span>
+    </div>
+  </header>
+
+
+  <!-- 主布局 -->
+  <div class="main-layout">
+    <!-- 侧边栏 -->
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="./assets/logo.png" alt="网易云音乐">
+        <span>网易云音乐</span>
+      </div>
+      <div class="sidebar-section">
+        <ul class="sidebar-menu nav-menu">
+          <li><a href="index.html" class="nav-item">推荐</a></li>
+          <li><a href="discover.html" class="nav-item active">精选</a></li>
+          <li><a href="#" class="nav-item">播客</a></li>
+          <li><a href="#" class="nav-item">漫游</a></li>
+          <li><a href="#" class="nav-item">关注</a></li>
+        </ul>
+      </div>
+
+      <!-- 我的菜单组 - 增加间距 -->
+      <div class="sidebar-section my-section">
+        <h3>我的</h3>
+        <ul class="sidebar-menu">
+          <li><a href="liked.html"><i class="icon-heart"></i>我喜欢的音乐</a></li>
+          <li><a href="#"><i class="icon-history"></i>最近播放</a></li>
+          <li><a href="#"><i class="icon-podcast"></i>我的播客</a></li>
+          <li><a href="#"><i class="icon-favorite"></i>我的收藏</a></li>
+          <li><a href="#"><i class="icon-download"></i>下载管理</a></li>
+          <li><a href="#"><i class="icon-local"></i>本地音乐</a></li>
+          <li><a href="#"><i class="icon-cloud"></i>我的音乐网盘</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>创建的歌单 <span class="count">12</span></h3>
+        <ul class="playlist-menu">
+          <!-- 动态生成 -->
+        </ul>
+      </div>
+    </aside>
+
+
+    <!-- 主内容区 -->
+    <div class="right-content">
+      <!-- 固定主标签 -->
+      <div class="sticky-tabs">
+        <div class="main-tabs">
+          <button class="main-tab" data-tab="featured">精选</button>
+          <button class="main-tab active" data-tab="playlist">歌单广场</button>
+          <button class="main-tab" data-tab="rank">排行榜</button>
+          <button class="main-tab" data-tab="artist">歌手</button>
+          <button class="main-tab" data-tab="vip">VIP</button>
+        </div>
+      </div>
+
+      <!-- 可滚动的主内容区 -->
+      <main class="main-content">
+        <!-- 精选标签页 -->
+        <div class="tab-pane" id="tab-featured">
+          <!-- 这里放精选内容，可后续填充 -->
+          <p>精选内容待实现</p>
+        </div>
+
+        <!-- 歌单广场标签页（默认显示） -->
+        <div class="tab-pane active" id="tab-playlist">
+          <!-- 二级分类标签容器 -->
+          <div class="sub-tabs" id="playlist-cat-tabs"></div>
+          <!-- 歌单网格容器 -->
+          <div class="playlist-grid" id="cat-playlists"></div>
+        </div>
+
+        <!-- 排行榜标签页 -->
+        <div class="tab-pane" id="tab-rank">
+          <p>排行榜待实现</p>
+        </div>
+
+        <!-- 歌手标签页 -->
+        <div class="tab-pane" id="tab-artist">
+          <p>歌手待实现</p>
+        </div>
+
+        <!-- VIP标签页 -->
+        <div class="tab-pane" id="tab-vip">
+          <p>VIP待实现</p>
+        </div>
+      </main>
+    </div>
+  </div>
+  <!-- 底部播放器 -->
+  <div class="player-bar" id="player-bar" style="display: none;">
+    <!-- 进度条 -->
+    <div class="player-progress-wrapper" id="player-progress-wrapper">
+      <div class="player-progress-bg"></div>
+      <div class="player-progress-filled" id="player-progress-filled" style="width: 0%;"></div>
+      <input type="range" class="player-progress-slider" id="player-progress-slider" min="0" max="100" value="0">
+    </div>
+
+    <!-- 左侧：歌曲信息（动态更新，无手动设置文字） -->
+    <div class="player-left">
+      <img src="./assets/default-cover.jpg" alt="专辑封面" class="player-cover" id="player-cover">
+      <div class="player-song-info">
+        <div class="player-song-name" id="player-song-name"></div>
+        <div class="player-song-artist" id="player-song-artist"></div>
+        <div class="player-badges" id="player-badges"></div>
+      </div>
+    </div>
+
+    <!-- 中间：控制按钮和时间显示 -->
+    <div class="player-center">
+      <div class="player-controls">
+        <button class="control-btn prev" id="player-prev" title="上一首">⏮</button>
+        <button class="control-btn play" id="player-play" title="播放/暂停">▶</button>
+        <button class="control-btn next" id="player-next" title="下一首">⏭</button>
+      </div>
+      <div class="player-time-display">
+        <span class="current-time" id="current-time">00:00</span>
+        <span class="time-separator">/</span>
+        <span class="total-time" id="total-time">00:00</span>
+      </div>
+    </div>
+
+    <!-- 右侧：音量控制和功能按钮 -->
+    <div class="player-right">
+      <div class="volume-control">
+        <button class="volume-btn" id="volume-btn" title="音量">🔊</button>
+        <input type="range" class="volume-slider" id="volume-slider" min="0" max="100" value="80">
+      </div>
+      <button class="player-action-btn" id="lyric-btn" title="歌词">词</button>
+      <button class="player-action-btn" id="playlist-btn" title="播放列表">列</button>
+      <button class="player-action-btn" id="player-mode" title="播放模式">循环</button>
+    </div>
+
+    <!-- 音频元素 -->
+    <audio id="global-audio" style="display: none;"></audio>
+  </div>
+
+  <!-- 播放列表面板 -->
+  <div class="playlist-panel" id="playlist-panel">
+    <div class="playlist-header">
+      <h3>播放列表</h3>
+      <button class="close-btn" onclick="document.getElementById('playlist-panel').style.display='none'">×</button>
+    </div>
+    <div class="playlist-content" id="playlist-content"></div>
+  </div>
+  <script src="./js/api.js"></script>
+  <script src="./js/utils.js"></script>
+  <script src="./js/player.js"></script>
+  <script src="./js/discover.js"></script>
+</body>
+
+</html>

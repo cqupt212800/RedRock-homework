@@ -1,0 +1,162 @@
+/* discover.css - 发现页面样式 */
+
+/* 右侧内容容器 */
+.right-content {
+  flex: 1;
+  min-width: 0;
+  background: var(--bg-primary);
+}
+
+/* 固定主标签的粘性容器 */
+.sticky-tabs {
+  position: sticky;
+  top: var(--header-height);/* 紧贴顶部导航底部 */
+  z-index: 99;
+  background: var(--bg-primary);
+  padding: 5px 30px 5px;/* 上边距与主内容原有 padding-top 协调 */
+}
+
+/* 主标签 */
+.main-tabs {
+  display: flex;
+  gap: 30px;
+  padding-bottom: 10px;
+}
+
+.main-tab {
+  font-size: 18px;
+  color: #666;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 0;
+  position: relative;
+}
+
+.main-tab.active {
+  color: #000000;
+  font-weight: 600;
+}
+
+.main-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 35%;
+  right: 35%;
+  height: 4px;
+  background: #f74545;
+  border-radius: 3px 3px;
+}
+
+/* 主内容区调整 */
+.main-content {
+  padding: 0 30px 90px;
+}
+
+/* 二级分类标签（歌单广场分类） */
+.sub-tabs {
+  display: flex;
+  gap: 12px;
+  margin: 0 0 25px 0;
+  overflow-x: auto;
+  padding-bottom: 5px;
+  scrollbar-width: none;
+}
+
+.sub-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.sub-tab {
+  padding: 6px 16px;
+  background: #fbfcfc;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  font-size: 14px;
+  color: #404040;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.sub-tab.active {
+  background: #feefef;
+  color: rgb(255, 93, 93);
+  border-color: rgb(255, 185, 185);
+}
+
+.sub-tab.more {
+  background: transparent;
+  border: 1px solid #ffffff;
+}
+
+/* 歌单网格 */
+.playlist-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* 歌单卡片 */
+.playlist-card {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.playlist-card:hover {
+  transform: translateY(-4px);
+}
+
+.playlist-cover {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.playlist-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.play-count {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+}
+
+.playlist-title {
+  font-size: 13px;
+  color: #333;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+/* 无数据提示 */
+.no-data {
+  text-align: center;
+  color: #999;
+  padding: 40px;
+}
+
+/* 其他标签页内容（可自行添加） */
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.active {
+  display: block;
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>播放详情 - 网易云音乐</title>
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/player.css">
+  <link rel="stylesheet" href="./css/player-detail.css">
+</head>
+
+<body>
+  <div class="player-detail-container">
+    <!-- 背景模糊层 -->
+    <div class="detail-backdrop" id="detail-backdrop"></div>
+
+    <div class="detail-content">
+      <!-- 返回按钮 -->
+      <button class="back-btn" onclick="window.history.back()">← 返回</button>
+
+      <div class="detail-main">
+        <!-- 左侧专辑封面 -->
+        <div class="detail-cover">
+          <img src="" alt="专辑封面" id="detail-cover">
+        </div>
+
+        <!-- 右侧信息 -->
+        <div class="detail-info">
+          <h1 class="detail-song-name" id="detail-song-name"></h1>
+          <div class="detail-artist" id="detail-artist"></div>
+          <div class="detail-album" id="detail-album"></div>
+
+          <!-- 大号播放控制 -->
+          <div class="detail-controls">
+            <button class="detail-control prev" onclick="window.player.prev()">⏮</button>
+            <button class="detail-control play" id="detail-play-btn" onclick="window.player.togglePlay()">▶</button>
+            <button class="detail-control next" onclick="window.player.next()">⏭</button>
+          </div>
+
+          <!-- 进度条 -->
+          <div class="detail-progress">
+            <span class="detail-current-time" id="detail-current-time">00:00</span>
+            <div class="detail-progress-bar">
+              <div class="detail-progress-filled" id="detail-progress-filled"></div>
+              <input type="range" class="detail-progress-slider" id="detail-progress-slider" min="0" max="100"
+                value="0">
+            </div>
+            <span class="detail-total-time" id="detail-total-time">00:00</span>
+          </div>
+
+          <!-- 歌词区域 -->
+          <div class="lyric-section">
+            <h3 class="lyric-title">歌词</h3>
+            <div class="lyric-content" id="lyric-content">
+              <div class="loading-lyric">歌词加载中...</div>
+            </div>
+          </div>
+
+          <!-- 歌曲信息 -->
+          <div class="song-meta">
+            <div class="meta-item">
+              <span class="meta-label">词：</span>
+              <span class="meta-value" id="lyric-writer"></span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">曲：</span>
+              <span class="meta-value" id="composer"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/api.js"></script>
+  <script src="./js/utils.js"></script>
+  <script src="./js/player.js"></script>
+  <script src="./js/player-detail.js"></script>
+</body>
+
+</html>
